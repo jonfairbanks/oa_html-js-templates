@@ -1,0 +1,218 @@
+
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		
+		<title>Merchant Name | Order Ahead Menu</title>
+		
+		<link rel="stylesheet" href="assets/css/pp_mis_oa.css" />
+
+
+		<!-- Standard jQquery Mobile themes can be created and replaced, to apply universal styling -->
+		<!-- Go to: http://jquerymobile.com/themeroller/index.php to build one, and download it to the themes directory. -->
+		<link rel="stylesheet" href="themes/jqm-paypal/theme.min.css" />
+		
+		<!-- Do not edit or remove the following jQuery framework files. -->
+		<link rel="stylesheet" href="lib/jquery.mobile.structure-1.3.1.min.css" />
+		<script src="lib/jquery-1.9.1.min.js"></script>
+		<script src="lib/jquery.mobile-1.3.1.min.js"></script>
+		
+		<!-- Declaring some global variables here for use in the cart and PP Order Ahaed JS. -->
+		<script src="assets/js/pp_oa.js"></script>
+		<script type="text/javascript">
+		var CART_COUNT = 0; //How many items are in the cart
+ 		var CART_TOTAL = 0; //total amount with tax that is due.
+		</script>
+
+	</head>
+
+
+
+	<body>
+		
+		<!-- Start Main Landing Page -->
+		<div data-role="page" data-theme="b" id="home" class="has_footer">
+
+			
+			<div data-role="header" style="background-image:url('assets/img/merchant/header_bg.png');" id="merchant-banner">
+					<p style="text-align:center" data-transition="slide">
+						<a href="store_details.html">
+							<img class="merchant-logo-square" src="assets/img/merchant/logo_square.png" width="60" height="60" />
+						</a>
+					</p>
+			</div>
+
+
+
+			<div data-role="content">
+			
+				<!-- Start Business Location Information Block -->
+				<ul data-role="listview" data-theme="d" data-inset="true"  id="business-info" class="ui-icon-alt">
+					<li data-role="list-divider" data-theme="c">Store Location:</li>
+					<li>
+						<a href="store_details.html" data-transition="slide">
+							
+							<!-- You Can use google static maps and the merchant address or lat lon to generate a small map image. -->
+							<img src="http://maps.googleapis.com/maps/api/staticmap?center=43.6523,-79.392&zoom=14&size=150x150&maptype=roadmap&markers=color:red%7C43.6523,-79.392&sensor=false" alt="Merchant Name Map">
+
+							<h3>96 Saint Patrick St. </h3>
+							<p class="hour_text">Open 9am-10pm</p>
+							<p class="tel_text">(647) 975-6188</p>
+						</a>
+					</li>
+				</ul>
+				<!-- End Business Location Information Block -->
+
+				<!-- Start Order Ahead Menu -->
+				<ul data-role="listview" data-theme="d" data-inset="true" class="ui-icon-alt">
+					<li data-role="list-divider" data-theme="c">
+						<strong>Order Ahead Menu:</strong><br/>
+						<em style="font-size:11px;">Choose a category below to add items to your order.</em>
+					</li>
+					<li>
+						<a href="category_1.html" data-transition="slide" data-prefetch>
+							<h3>Appetizers</h3>
+							<p>Starters and salads</p>
+						</a>
+					</li>
+					<li>
+						<a href="category_2.html" data-transition="slide" data-prefetch>
+							<h3>Sandwiches</h3>
+							<p>Made fresh daily.</p>
+						</a>
+					</li>
+					<li>
+						<a href="category_3.html">
+							<h3>Desserts</h3>
+							<p>Leave some room for a sweet treat.</p>
+						</a>
+					</li>
+					<li>
+						<a href="category_4.html" data-transition="slide" data-prefetch>
+							<h3>Beverages</h3>
+							<p>Pop, Juice, Beer and Wine</p>
+						</a>
+					</li>
+				</ul>
+				<!-- End Order Ahead Menu -->
+
+			</div> <!-- End Content Div -->
+
+
+			<!-- This script keeps the footer toolbar totals up to date -->
+			<script type="text/javascript" src="assets/js/update_footer.js"></script>
+
+
+			<!-- start footer -->
+			<div data-role="footer" data-position="fixed" data-id="footer-nav" data-theme="d" class="footer-bar">
+
+				<div class="ui-grid-b">
+					<div class="ui-block-a">
+						<a style="display:none;" data-transition="slide" data-direction="reverse" data-role="button" href="index.html" data-min="true" data-inline="true">Menu</a>
+					</div>
+					<div class="ui-block-b">
+						<p>Cart<br/>
+						 (<span class="grand_total">empty</span>)<p>
+					</div>
+					<div class="ui-block-c">
+						<a data-theme="b" data-role="button" href="#cart" data-iconpos="right" data-icon="arrow-r" data-min="true" data-inline="true" data-transition="slide">My Order</a>
+					</div>
+				</div><!-- /grid-b -->
+				
+			</div><!-- end footer -->
+
+		</div>
+		<!-- End Main Landing Page -->
+
+
+
+		<!-- Start Cart Dialog -->
+		<div data-role="page" data-theme="c" id="cart" class="ui-icon-alt">
+					
+			<div data-role="header" data-theme="d">
+				<h2>Your Order</h2>
+				<a href="#" data-mini="true" data-icon="edit" data-theme="c" class="ui-btn-right">Edit</a>
+			</div>
+
+			<div data-role="content" data-theme="c" >
+
+				<ul data-role="listview" id="cart-list">
+					<li id="confirm_header" data-role="list-divider" data-theme="c">Order Items: <span class="ui-li-count" id="order_item_count">0</span> </li>
+					<!-- This is where the cart items will go when they are added -->
+
+
+					<li id="confirm_subtotals" data-theme="d">
+						<p style="text-align:right;">Sub Total: &nbsp;&nbsp;&nbsp;<span class="sub_total">$0</span></p>
+						<p style="text-align:right;"><?=$merchant['merchant']['default_tax_rate']; ?>% Tax : &nbsp;&nbsp;&nbsp;<span class="tax_total">$0</span></p>
+						<h2 style="text-align:right;">Grand Total: &nbsp;&nbsp;&nbsp;<span class="grand_total" style="color:green">$0</span></h2>
+					</li>
+				</ul>
+				<div>
+					<a href="#confirm" data-role="none" class="PwPP PPBlue" data-transition="slide"><b>Next: Set Pickup Time</b></a>
+					<a data-role="button" class="ui-icon-alt" data-icon="arrow-l" data-transition="slide" data-direction="reverse" data-theme="c" href="#home" data-mini="true">Add More Items</a>
+				</div>
+				
+			</div> <!-- End Content -->
+
+		</div> <!-- End Cart Dialog -->
+
+
+
+		<!-- Start Confirm Dialog -->
+		<div data-role="page" data-theme="c" id="confirm">
+					
+			<div data-role="header" data-theme="d" >
+				<h2>Pickup Details</h2>
+			</div>
+
+			<div data-role="content" data-theme="c" >
+
+				<form method="post" action="place_order.php">
+					<ul data-role="listview" id="pickup_list">
+						<li data-role="list-divider" data-theme="c">Pickup Time: <span id="pickup_time" class="ui-li-count">4:12pm</span></li>
+						<li data-theme="d" data-role="fieldcontain">
+							<label for="pickup_slider">How many minutes until you will arrive?</label>
+							<input type="range" name="pickup_minutes" id="pickup_slider" value="15" min="15" max="120" step="5" data-highlight="true">
+						</li>
+						<li data-theme="d" data-role="fieldcontain">
+							<fieldset data-role="controlgroup" data-type="horizontal">
+						        <legend>Add a tip?</legend>
+						        <input type="radio" name="gratuity" id="gratuity-0" value="0" data-mini="true" checked="checked">
+						        <label for="gratuity-0">0%</label>
+						        <input type="radio" name="gratuity" id="gratuity-10" data-mini="true" value="10%">
+						        <label for="gratuity-10">10%</label>
+						        <input type="radio" name="gratuity" id="gratuity-15" data-mini="true" value="15%">
+						        <label for="gratuity-15">15%</label>
+						        <input type="radio" name="gratuity" id="gratuity-18" data-mini="true" value="18%">
+						        <label for="gratuity-18">18%</label>
+						        <input type="radio" name="gratuity" id="gratuity-other" data-mini="true" value="other">
+						        <label for="gratuity-other">Other</label>
+						    </fieldset>
+						</li>
+						<li data-theme="d" data-role="fieldcontain"> 
+							<label for="order_comments">Special Instructions:</label>
+							<textarea cols="40" rows="8" name="comments" id="order_comments"></textarea>
+						</li>
+				     </ul>
+				     <div>
+					     <button type="submit" data-role="none" class="PwPP PPBlue" href="#home" data-iconpos="right">
+					        <b>Pay <span class="grand_total">$0</span> with <img src="assets/img/icons/PPWhite.png" align="absmiddle" width="84" height="22"/></b>
+					     </button>
+						<a data-role="button" class="ui-icon-alt" data-icon="arrow-l" data-rel="back" data-theme="c" href="#cart" data-mini="true">Make Changes to Order</a>
+					</div>
+					<script type="text/css">
+
+					</script>
+
+				</form>
+				
+			</div> <!-- End Content -->
+
+		</div> <!-- End Confirm Dialog -->
+
+
+	</body>
+</html>

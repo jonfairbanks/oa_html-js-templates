@@ -1,0 +1,171 @@
+/* Custom CSS for PayPal MIS Order Ahead Templates */
+
+#business-info .ui-li-heading{
+  margin-top:0px;
+}
+#merchant-banner{
+  background-position:center center;
+  padding:20px;
+}
+#cart ul, #pickup_list{
+  margin-bottom: 20px;
+}
+#cart-list li h4{
+  font-size:13px;
+}
+.merchant-logo-square{
+  border-radius: 5px;
+}
+.item-list h2 {
+  margin-top:0.3em;
+}
+.item-list li p{
+  white-space: normal;
+}
+.mod-price{
+  font-size:12px;
+  color:green;
+  float:right;
+  font-style: italic;
+  font-weight: normal;
+}
+.item-info li h2 span, .item-list li h2 span{
+  color:green;
+  float:right;
+  font-weight: normal;
+  font-size:13px;
+}
+.quan-select h4{
+  font-size: 12px;
+  text-transform: uppercase;
+  float:left;
+  margin-right:30px;
+  color:#999;
+  font-weight:normal;
+}
+.cart_purchase_item .quan_text{
+  font-weight: normal;
+  color:#999;
+}
+.cart_purchase_item .mod_text{
+  font-style: italic;
+  white-space: normal;
+}
+.footer-bar .ui-block-c{
+  text-align: right;
+}
+.footer-bar .ui-block-b{
+  text-align: center;
+  font-size:10px;
+}
+.item-info li p{
+  white-space: normal;
+}
+.ui-controlgroup-label legend{
+  font-size:13px;
+}
+
+.hour_text{
+  padding-left:20px;
+  background-image:url('../img/icons/clock.png');
+  background-repeat: no-repeat;
+  background-size:14px;
+  line-height: 16px
+}
+.tel_text{
+  padding-left:20px;
+  background-image:url('../img/icons/phone.png');
+  background-repeat: no-repeat;
+  background-size:14px;
+  line-height: 16px
+}
+
+/*CSS Below For Custom PayPal Pay Buttons*/
+
+.PwPP {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border-radius: 5px;
+  font-size: 24px;
+  height: 2em;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+  text-align: center;
+  width: 100%;
+  white-space: nowrap;
+}
+.PwPP,
+.PwPP b,
+.PwPP i {
+  cursor: pointer;
+  display: inline-block;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  *display: inline;
+}
+.PwPP b {
+  font: normal 700 0.6875em/1.5 "Helvetica Neue", Arial, sans-serif;
+  height: 2.25em;
+  padding: .625em .66667em 0;
+  vertical-align: baseline;
+}
+.PwPP .PPTM,
+.PwPP i {
+  height: 100%;
+  margin: 0 .4em 0 .5em;
+  vertical-align: middle;
+  width: 1em;
+}
+.PwPP i {
+  height: 1em;
+}
+/* .PwPP img.PPTM {
+  height: auto;
+} */
+.PPBlue {
+  background-color: #0079c1;
+  background-image: -webkit-linear-gradient(#00a1ff 20%, #0079c1);
+  background-image: linear-gradient(#00a1ff 20%, #0079c1);
+  background-repeat: no-repeat;
+  border: 1px solid #000;
+  border-color: #0079c1 #00588b #004b77;
+  -webkit-box-shadow: inset 0 1px #4dbeff;
+  box-shadow: inset 0 1px #4dbeff;
+}
+.PPBlue b {
+  /* border-left: 1px solid #00588b;
+  -webkit-box-shadow: inset 1px 0 rgba(77, 190, 255, .5);
+  box-shadow: inset 1px 0 rgba(77, 190, 255, .5); */
+  color: #f9fcff;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  text-shadow: 0 -1px 0 #00629c;
+}
+/* .PPBlue i {
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAhCAMAAADnC9tbAAAA81BMVEX///////+ozeUAecEARXyozeUARXwAecH///8AecGozeX///8ARXz///+ozeUAecEARXzg7fYAbrPx9/v///8AecFGntKozeUAZqgARXwARXy11OmFv+EAecEAaav///8AecGozeUARXwAW5rZ6fTg7fb5+/3V5/LA2+z///8ARXyozeW92euy0+j5+/0AecEAc7kAbLAASIDR5fH///+ozeUAY6MAT4oARXwAecEARXz///+ozeX///8ARXwAecGozeUARXyozeX///8AecH///8AecEARXyozeWozeX///8ARXwAecGozeUAecH///8ARXwU3q5BAAAATXRSTlMAERERESIiIiIzMzMzRERERERERFVVVVVVVWZmZmZmZnd3d3d3d3d3d4iIiIiIiIiIiIiImZmZmZmqqqqqu7u7u8zMzMzd3d3d7u7u7nVO37gAAAEZSURBVHheTY5rX4IwGEf/aFhWoJV2sRugXcDu2QUMDA0QbdPv/2naw9B13jzb2X5nA1CbLyVxBwWd5RoPhLdU1EjEQjiAQ+K9DWysTmh2f4CmmBnKG89cJrLmySftI1+ISCXnx9wH1D7Y/+UN7JLIoih4uRhxfi5bsTUapZxzvw4goA/y1LKsRhVERq/zNkpk84lXlXC8j26aQoG6qD3iP5uHZwaxg5KtRcnM1UBcLtYMQQzoMJwUZo9EIkQLMEi82oBGC62cvSnQEjMB4JK4Y3KRuG7RGHznQKgemZyyN2ChvnHPcl3Gw9B9uOpPWb4tE8MvRkztCoChENdsfGSaOgpmQtwwE2uo1mcVJYyD3m0+hgJ6zpitxB/jvlwEGmtLjgAAAABJRU5ErkJggg==') 0 100% no-repeat;
+} */
+.PPBlue:hover,
+.PPBlue:active {
+  background-color: #005282;
+  background-image: -webkit-linear-gradient(#0083cf 20%, #005282);
+  background-image: linear-gradient(#0083cf 20%, #005282);
+  background-repeat: no-repeat;
+  border-color: #006699 #004466 #003355;
+}
+.PPBlue:active {
+  -webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+.PPBlue:hover b,
+.PPBlue:active b {
+  text-shadow: 0 -1px 0 #004466;
+}
+.PPBlue:hover b {
+  /* -webkit-box-shadow: inset 1px 0 rgba(255,255,255,.3);
+  box-shadow: inset 1px 0 rgba(255,255,255,.3); */
+}

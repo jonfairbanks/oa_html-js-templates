@@ -24,4 +24,4 @@ http://73.201.0.4/oa
 
 Comments
 --------------
-The HTML source has many many comments to help get you started. If you have any questions you can contact: rymay@paypal.com
+The HTML source has many comments to help get you started. If you have any questions you can contact: rymay@paypal.com

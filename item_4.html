@@ -44,7 +44,7 @@
 					<!-- End hidden form item variables -->
 
 					<!-- Start Business Location Information Block -->
-					<ul data-role="listview" data-theme="d" data-inset="true"  class="item-info island">
+					<ul data-role="listview" data-theme="d" data-inset="true"  class="item-info island" style="margin-top:0;">
 						<li>
 							<img src="assets/img/items/4.png">
 							<h2>BLT Sandwich <span>$5.15</span></h2>
@@ -62,6 +62,7 @@
 					<!-- End Business Location Information Block -->
 					
 					<!-- Start Item Modifiers-->
+					<h2 class="outer_title">Options</h2>
 					<ul data-role="listview" data-theme="d" data-inset="true" class="ui-icon-alt island">
 						<li data-role="fieldcontain">
 							<fieldset data-role="controlgroup" data-theme="c">
@@ -92,45 +93,23 @@
 
 
 					<!-- Start Item Modifiers-->
+					<h2 class="outer_title">Sandwich Toppings</h2>
 					<ul data-role="listview" data-theme="d" data-inset="true" class="ui-icon-alt island">
-						<li data-theme="d" class="slim_header">
-							Sandwich Toppings:
-						</li>
-						<li data-role="fieldcontain">
-							<div class="ui-grid-a">
-								<div class="ui-block-a">
-							        <input data-theme="d" type="checkbox" name="toppings[]" id="checkbox-v-1a" value="bacon" data-mini="true" checked="checked" mod-default="true">
-							        <label for="checkbox-v-1a">Bacon</label>
-								</div>
-								<div class="ui-block-b">
-							        <input data-theme="d" type="checkbox" name="toppings[]" id="checkbox-v-2a" value="lettuce" data-mini="true" checked="checked" mod-default="true">
-							        <label for="checkbox-v-2a">Lettuce</label>
-								</div>	   
-							</div>
-						</li>
-						<li data-role="fieldcontain">
-							<div class="ui-grid-a">
-								<div class="ui-block-a">
-							        <input data-theme="d" type="checkbox" name="toppings[]" id="checkbox-v-3a" value="tomato" data-mini="true" checked="checked" mod-default="true">
-							        <label for="checkbox-v-3a">Tomato</label>
-								</div>
-								<div class="ui-block-b">
-							        <input data-theme="d" type="checkbox" name="toppings[]" id="checkbox-v-4a" value="mayo" data-mini="true" checked="checked" mod-default="true">
-							        <label for="checkbox-v-4a">Mayo</label>
-								</div>	   
-							</div>
-						</li>
-						<li data-role="fieldcontain">
-							<div class="ui-grid-a">
-								<div class="ui-block-a">
-							        <input data-theme="d" type="checkbox" name="toppings[]" id="checkbox-v-5a" value="salt and pepper" data-mini="true" >
-							        <label for="checkbox-v-5a">Salt and Pepper</label>
-								</div>
-								<div class="ui-block-b">
-							        <input data-theme="d" type="checkbox" name="toppings[]" id="checkbox-v-6a" value="avocado" data-mini="true" mod-cost="1.00">
-							        <label for="checkbox-v-6a">Avocado <span class="mod-price">+ $1.00</span></label>
-								</div>	   
-							</div>
+						<li>
+							<fieldset data-role="controlgroup">
+						        <input data-theme="d" type="checkbox" name="toppings[]" id="checkbox-v-1a" value="bacon" data-mini="true" checked="checked" mod-default="true">
+						        <label for="checkbox-v-1a">Bacon</label>
+						        <input data-theme="d" type="checkbox" name="toppings[]" id="checkbox-v-2a" value="lettuce" data-mini="true" checked="checked" mod-default="true">
+						        <label for="checkbox-v-2a">Lettuce</label>
+						        <input data-theme="d" type="checkbox" name="toppings[]" id="checkbox-v-3a" value="tomato" data-mini="true" checked="checked" mod-default="true">
+						        <label for="checkbox-v-3a">Tomato</label>
+						        <input data-theme="d" type="checkbox" name="toppings[]" id="checkbox-v-4a" value="mayo" data-mini="true" checked="checked" mod-default="true">
+						        <label for="checkbox-v-4a">Mayo</label>
+						        <input data-theme="d" type="checkbox" name="toppings[]" id="checkbox-v-5a" value="salt and pepper" data-mini="true" >
+						        <label for="checkbox-v-5a">Salt and Pepper</label>
+						        <input data-theme="d" type="checkbox" name="toppings[]" id="checkbox-v-6a" value="avocado" data-mini="true" mod-cost="1.00">
+						        <label for="checkbox-v-6a">Avocado <span class="mod-price">+ $1.00</span></label>
+							</fieldset>	
 						</li>
 					</ul>
 					<!-- End Item Modifiers-->

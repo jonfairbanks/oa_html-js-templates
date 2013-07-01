@@ -30,17 +30,53 @@ $(document).on('pageinit', '#confirm',  function(){
 			$('.grand_total').text('$'+new_grand);
 		}
 	});
+	$('#process-payment-button').click(function(){
+
+		//open custom payment processing loader
+		$.mobile.loading( 'show', {
+					text: 'Processing Payment...',
+					textVisible: true,
+					theme: 'd',
+					textonly: false, 
+					html: '<div><p style="text-align:center;"><img src="assets/img/icons/ajax-loader.gif"</p><h1>Processing Payment...</h1></div>'
+			});
+
+		setTimeout("payment_complete();", 5000);
+		return false;
+	});
+
+});
+$(document).on('pageshow', '#done',  function(){  //when this page is shown, we should clear out the cart
+	CART_COUNT = 0; 
+	CART_ITEM_COUNT = 0;
+ 	CART_TOTAL = 0;
+ 	$('#cart-list li.cart_purchase_item').remove();
+ 	update_total();
 });
 
 
 //this function fires each time a page is loaded dynamically that has a footer
 $(document).on("pageinit", '.has_footer', function( event ) {
-	if(CART_TOTAL > 0){ //lets make sure this is updated
+	if(parseInt(CART_TOTAL) > 0){ //lets make sure this is updated
 		$('.grand_total').text('$'+CART_TOTAL);
 		$('.cart_count_bubble').text(CART_ITEM_COUNT);
 		$('.cart_count_bubble').show();
 		$('.no-empty').show();
 	}else{
+		$('.grand_total').text('$0');
+		$('.cart_count_bubble').hide();
+		$('.no-empty').hide();
+	}
+});
+//had to duplicate for page show due to an cacheing issue.
+$(document).on("pageshow", '.has_footer', function( event ) {
+	if(parseInt(CART_TOTAL) > 0){ //lets make sure this is updated
+		$('.grand_total').text('$'+CART_TOTAL);
+		$('.cart_count_bubble').text(CART_ITEM_COUNT);
+		$('.cart_count_bubble').show();
+		$('.no-empty').show();
+	}else{
+		$('.grand_total').text('$0');
 		$('.cart_count_bubble').hide();
 		$('.no-empty').hide();
 	}
@@ -105,7 +141,13 @@ function update_total(){  //this function updates all the totals.
 	var grand_total = sub_total + tax_total; 
     tax_total = tax_total.toFixed(2);
     sub_total = sub_total.toFixed(2);
-    var grand_total = grand_total.toFixed(2);
+    if(line_count == 1){ //if there is nothing in here
+    	var grand_total = 0;
+    	$('.cart_count_bubble').hide();
+		$('.no-empty').hide();
+    }else{ //otherwise format the grand total
+    	var grand_total = grand_total.toFixed(2);
+    }
 
 	 //now we can update the page
 	 $('.sub_total').text('$'+sub_total);
@@ -115,6 +157,7 @@ function update_total(){  //this function updates all the totals.
 	 //update the global variables
 	 CART_TOTAL = grand_total;
 	 CART_ITEM_COUNT = item_count; 
+	 CART_COUNT = line_count-1;
 }
 
 function edit_cart(){
@@ -205,6 +248,14 @@ function set_pickup_time(){
 	$('#local_time_input').val(pickup_time);
 	$('#pickup_list').listview('refresh');
 }
+ function payment_complete(){  //items to do after successful payment
 
+ 	$.mobile.loading( 'hide' );
+ 	$.mobile.changePage( "#done", {
+	  transition: "slide",
+	  reverse: false
+	});
+
+ }
 
 

@@ -6,7 +6,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 		
-		<title>Merchant Name | Order Ahead Menu</title>
+		<title>Merchant Name</title>
 
 		<!-- Standard jQquery Mobile themes can be created and replaced, to apply universal styling -->
 		<!-- Go to: http://jquerymobile.com/themeroller/index.php to build one, and download it to the themes directory. -->
@@ -66,7 +66,7 @@
 				<!-- Start Order Ahead Menu -->
 				<h2 class="outer_title">Order Ahead Menu</h2>
 
-				<ul data-role="listview" data-theme="d" data-inset="true" class="ui-icon-alt">
+				<ul data-role="listview" data-theme="d" data-inset="true" class="ui-icon-alt island">
 					<li>
 						<a href="category_1.html" data-transition="slide" data-prefetch>
 							<img src="assets/img/items/category_1.png" />
@@ -74,17 +74,13 @@
 							<p>Starters and salads</p>
 						</a>
 					</li>
-				</ul>
-				<ul data-role="listview" data-theme="d" data-inset="true" class="ui-icon-alt">
-						<li>
+					<li>
 						<a href="category_2.html" data-transition="slide" data-prefetch>
 							<img src="assets/img/items/category_2.png" />
 							<h3>Sandwiches</h3>
 							<p>Made fresh daily.</p>
 						</a>
 					</li>
-				</ul>
-				<ul data-role="listview" data-theme="d" data-inset="true" class="ui-icon-alt">
 					<li>
 						<a href="category_3.html" data-transition="slide" data-prefetch>
 							<img src="assets/img/items/category_3.png" />
@@ -92,8 +88,6 @@
 							<p>Leave some room for a sweet treat.</p>
 						</a>
 					</li>
-				</ul>
-				<ul data-role="listview" data-theme="d" data-inset="true" class="ui-icon-alt">
 					<li>
 						<a href="category_4.html" data-transition="slide" data-prefetch>
 							<img src="assets/img/items/category_4.png" />
@@ -218,8 +212,8 @@
 
 			<div data-role="content" data-theme="c" >
 
-				<ul data-role="listview" id="pickup_list" data-inset="true" style="margin-top:0px;" class="island" data-count-theme="f">
-					<li data-theme="d" class="slim_header">Pickup Time <span class="pickup_time ui-li-count">Today at 4:12pm</span></li>
+				<ul data-role="listview" id="pickup_list" data-inset="true" style="margin-top:0px;" class="island no-lines">
+					<li data-theme="d" class="slim_header">Pickup Time <span class="pickup_time" style="float:right;color:#000">Today at 4:12pm</span></li>
 					<li data-theme="d" class="ui-icon-alt">
 			            <select name="pickup_day" id="pickup_day" data-mini="true">
 			                <!-- Loop Through the next available week using your programming language -->
@@ -300,7 +294,7 @@
 				</ul>
 
 			     <div>
-				     <a data-role="none" class="PwPP PPBlue" href="#done">
+				     <a data-role="none" class="PwPP PPBlue" href="#done" data-transition="slide" id="process-payment-button">
 				        <b>Pay <span class="grand_total">$0</span> with <img src="assets/img/icons/PPWhite.png" align="absmiddle" width="84" height="22"/></b>
 				     </a>
 					<a data-role="button" data-rel="back" data-theme="h" href="#pickup">Change Pickup Time</a>
@@ -319,18 +313,28 @@
 
 				<ul data-role="listview" id="done_list" data-inset="true" style="margin-top:0px;" class="island" >
 					<li data-theme="d" class="slim_header">Order Complete</li>
-					<li data-theme="d"><p style="margin-bottom:0;">Pickup Time <span class="pickup_time">0:00</span></p></li>
 					<li data-theme="d">
-						<p>Total: <span class="grand_total">$0</span> Paid with PayPal</p>
+						<p class="grey">Pickup Time: <span class="pickup_time">0:00</span></p>
+						<p class="grey">Total: <span><span class="grand_total">$0</span> Paid with PayPal</span></p>
+						<p>Look for the Prepaid Orders sign and skip the line!<p>
 					</li>
 				</ul>
+				
 				<ul data-role="listview"  data-inset="true" class="island ui-icon-alt" >
 					<li data-theme="d">
 						<a href="store_details.html">
 							<h2 style="margin-top:0;font-size:14px;text-transform:uppercase;">Store Location</h2>
 							<img src="http://maps.googleapis.com/maps/api/staticmap?center=43.6523,-79.392&zoom=14&size=150x150&maptype=roadmap&markers=color:red%7C43.6523,-79.392&sensor=false" />
+							<p >96 Saint Patrick St, Toronto ON</p>
 							<p class="hour_text">Open 9am-10pm</p>
-							<p class="tel_text">647.975.6188</p>
+							
+						</a>
+					</li>
+					<li data-theme="d">
+						<a href="tel:+16479756188">
+							<h2 style="font-size:15px;font-weight:500;">
+								<img height="15" src="assets/img/icons/phone.png" /> &nbsp;&nbsp; (647) 975-6188
+							</h2>
 						</a>
 					</li>
 				</ul>

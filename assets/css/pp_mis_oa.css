@@ -16,9 +16,8 @@
 }
 #my-order-header h2, li.slim_header{
   text-transform: uppercase;
-  color:#999;
-  font-weight:300;
-  font-size:14px;
+  font-size:13px;
+  color:rgb(144,144,144);
 }
 span.pickup_time{
   text-transform: none;
@@ -26,14 +25,29 @@ span.pickup_time{
 #my-order-header .ui-block-b{
   text-align: right;
 }
-#confirm_list p.ui-li-desc{
+ul.island label.ui-input-text{
   font-size:13px;
+}
+#confirm_list p.ui-li-desc{
+  font-size: 13px;
+  line-height: 21px;
 }
 #confirm_list p.ui-li-desc span{
   float:right;
+  font-weight: 600;
+  color:#000;
 }
 #confirm_list h3 span{
   float:right;
+}
+#done_list .grey{
+  text-transform: uppercase;
+  font-size:13px;
+  color:rgb(144,144,144);
+  line-height:20px;
+}
+#done_list .grey span{
+  color:#000;
 }
 .outer_title{
   font-size:13px;
@@ -107,7 +121,9 @@ ul.island{
 div.category_header{
   padding: 10px;
   text-transform: uppercase;
-  font-weight: 300;
+  font-weight: 600;
+  font-size:13px;
+  color:rgb(144,144,144);
 }
 .item-info li h2 span, .item-list li h2 span{
   color:green;

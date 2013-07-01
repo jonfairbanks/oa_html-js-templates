@@ -1,4 +1,27 @@
-oa_html-js-templates
-====================
+Enhanced Check-In Order Ahead Templates
+=========
+The following HTML and JS templates were designed to help assist POS partners with setting up order ahead functionality in association with PayPal's Mobile In-Store framework.  The templates will not function alone, but should act as a front-end and UI guide while integrating with a backend technology.
 
-HTML and Javascript order ahead templates.  Templates can be used as a foundation for PayPal partners looking to build out order ahead functionality with the mobile in-store framework.
+Version V1.01
+-
+The current version includes front end templates and sample javascript for:
+
+  - Categories and Sub Categories
+  - Item level taxes, price, quantites, and modifiers
+  - Default selection settings on modifiers
+  - Dynamic form and cart creation
+  - Total calculations with taxes
+  - Pickup configuration
+  - Tipping
+  - Order Confirmation
+  - Store Details
+
+Live Hosted Version
+--------------
+Use the following link to test the most recent version online:
+http://73.201.0.4/oa
+(Always start from the index page)
+
+Comments
+--------------
+The HTML source has many many comments to help get you started. If you have any questions you can contact: rymay@paypal.com

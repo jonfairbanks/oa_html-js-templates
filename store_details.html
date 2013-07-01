@@ -31,25 +31,23 @@
 			<div data-role="content">
 			
 				<!-- Start Business Location Information Block -->
-				<ul data-role="listview" data-theme="d" data-inset="true"  class="item-info">
-					<li data-role="list-divider" data-theme="c">Store Location:</li>
+				<ul data-role="listview" data-theme="d" data-inset="true"  class="item-info island">
+					<li data-theme="d" class="slim_header">Store Location</li>
 					<li>
-						<h2>96 Saint Patrick St, Toronto ON </h2>
-					</li>
-					<li class="quan-select" style="border-top:none;">
+						<p>96 Saint Patrick St, Toronto ON </p>
 						<div id="map-canvas">
 							<img width="100%" src="http://maps.googleapis.com/maps/api/staticmap?center=43.6523,-79.392&zoom=14&size=400x300&maptype=roadmap&markers=color:red%7C43.6523,-79.392&sensor=false" />
 						</div>
 					</li>
-					<li data-theme="c" >
+					<li data-theme="d" >
 						<button>Get Directions</button>
 					</li>
 				</ul>
 				<!-- End Business Location Information Block -->
 
 				<!-- Start Business Location Information Block -->
-				<ul data-role="listview" data-theme="d" data-inset="true"  class="item-info">
-					<li data-role="list-divider" data-theme="c">Store Hours:</li>
+				<ul data-role="listview" data-theme="d" data-inset="true"  class="item-info island">
+					<li data-theme="d" class="slim_header">Store Hours:</li>
 					<li>
 						<p>Order ahead will only be accepted up until 30 minutes prior to close.</p>
 						<h2>Monday <span>9am-5pm</span></h2>
@@ -66,7 +64,7 @@
 	
 
 				<div>
-					<a data-role="button" href="tel:+16479757188" data-theme="a">Call: 647-975-7188</a>
+					<a data-role="button" href="tel:+16479757188" data-theme="h">Call: 647-975-7188</a>
 					<a data-role="button" data-theme="c" href="mailto:ryan@ryanscafe.com" data-mini="true">Email: ryan@ryanscafe.com</a>
 				</div>
 
@@ -76,23 +74,18 @@
 			<!-- start footer -->
 			<div data-role="footer" data-position="fixed" data-id="footer-nav" data-theme="d" class="footer-bar">
 
-				<div class="ui-grid-b">
+				<div class="ui-grid-a">
 					<div class="ui-block-a">
-						<a  data-transition="slide" data-direction="reverse" data-role="button" href="index.html" data-min="true" data-inline="true">Menu</a>
+						<a data-transition="slide" data-direction="reverse" data-role="button" href="index.html" data-min="true" data-inline="true" data-theme="g">Menu</a>
 					</div>
 					<div class="ui-block-b">
-						<p>Cart<br/>
-						 (<span class="grand_total">empty</span>)<p>
-					</div>
-					<div class="ui-block-c">
-						<a data-theme="b" data-role="button" href="#cart" data-iconpos="right" data-icon="arrow-r" data-min="true" data-inline="true" data-transition="slide">My Order</a>
+						<a data-theme="f" data-role="button" href="#cart" class="cart_button" data-iconpos="right" data-icon="arrow-r" data-min="true" data-inline="true" data-transition="slide">My Order  (<span class="grand_total">$0</span>)</a>
+						<span class="cart_count_bubble">0</span>
 					</div>
 				</div><!-- /grid-b -->
 				
 			</div><!-- end footer -->
 
-			<!-- This Javascript handles converting the item form into the cart inputs -->
-			<script type="text/javascript" src="assets/js/add_to_cart.js"></script>
 
 		</div>
 		<!-- End Main Landing Page -->

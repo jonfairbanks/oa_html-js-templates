@@ -26,27 +26,26 @@
 	<body>
 		
 		<!-- Start Main Landing Page -->
-		<div data-role="page" data-theme="d" id="category_4">
+		<div data-role="page" data-theme="d" id="category_4" class="has_footer">
+
+			<div data-role="header" data-theme="a" class="category_header">Beverages</div>
+
 
 			<div data-role="content">
 
 				<!-- Start Item List -->
 				<ul data-role="listview" data-theme="d" class="item-list ui-icon-alt" data-filter="true" data-filter-placeholder="Search beverages...">
-					<li data-role="list-divider" data-theme="c">
-						<strong>Beverages:</strong><br/>
-						<em style="font-size:11px;">Select an item below for details.</em>
-					</li>
 					<li data-role="list-divider" data-theme="d">Juice</li>
 					<li>
 						<a href="#">
 							<img src="assets/img/items/none.png" />
-							<h2>50 oz Apple Juice <span>($1.85)</span></h2>
+							<h2>50 oz Apple Juice <span>$1.85</span></h2>
 						</a>
 					</li>
 					<li>
 						<a href="#">
 							<img src="assets/img/items/none.png" />
-							<h2>50 oz Orange Juice <span>($1.85)</span></h2>
+							<h2>50 oz Orange Juice <span>$1.85</span></h2>
 						</a>
 					</li>
 					<li data-role="list-divider" data-theme="d">Soda Pop</li>
@@ -54,32 +53,32 @@
 					<li>
 						<a href="#">
 							<img src="assets/img/items/none.png" />
-							<h2>355ml Coke <span>($1.25)</span></h2>
+							<h2>355ml Coke <span>$1.25</span></h2>
 						</a>
 					</li>
 					<li>
 						<a href="#">
 							<img src="assets/img/items/none.png" />
-							<h2>355ml Sprite <span>($1.25)</span></h2>
+							<h2>355ml Sprite <span>$1.25</span></h2>
 						</a>
 					</li>
 					<li>
 						<a href="#">
 							<img src="assets/img/items/none.png" />
-							<h2>355ml Root Beer <span>($1.25)</span></h2>
+							<h2>355ml Root Beer <span>$1.25</span></h2>
 						</a>
 					</li>
 					<li data-role="list-divider" data-theme="d">Alcoholic</li>
 					<li>
 						<a href="item_8.html" data-transition="slide">
 							<img src="assets/img/items/8.png" />
-							<h2>Bottle Corona <span>($5.25)</span></h2>
+							<h2>Bottle Corona <span>$5.25</span></h2>
 						</a>
 					</li>
 					<li>
 						<a href="#">
 							<img src="assets/img/items/none.png" />
-							<h2>Glass of Wine<span>($4.25)</span></h2>
+							<h2>Glass of Wine<span>$4.25</span></h2>
 						</a>
 					</li>
 				</ul>
@@ -90,16 +89,13 @@
 			<!-- start footer -->
 			<div data-role="footer" data-position="fixed" data-id="footer-nav" data-theme="d" class="footer-bar">
 
-				<div class="ui-grid-b">
+				<div class="ui-grid-a">
 					<div class="ui-block-a">
-						<a data-transition="slide" data-direction="reverse" data-role="button" href="index.html" data-min="true" data-inline="true">Menu</a>
+						<a data-transition="slide" data-direction="reverse" data-role="button" href="index.html" data-min="true" data-inline="true" data-theme="g">Menu</a>
 					</div>
 					<div class="ui-block-b">
-						<p>Cart<br/>
-						 (<span class="grand_total">empty</span>)<p>
-					</div>
-					<div class="ui-block-c">
-						<a data-theme="b" data-role="button" href="#cart" data-iconpos="right" data-icon="arrow-r" data-min="true" data-inline="true" data-transition="slide">My Order</a>
+						<a data-theme="f" data-role="button" href="#cart" class="cart_button" data-iconpos="right" data-icon="arrow-r" data-min="true" data-inline="true" data-transition="slide">My Order  (<span class="grand_total">$0</span>)</a>
+						<span class="cart_count_bubble">0</span>
 					</div>
 				</div><!-- /grid-b -->
 				

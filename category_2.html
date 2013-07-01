@@ -26,16 +26,15 @@
 	<body>
 		
 		<!-- Start Main Landing Page -->
-		<div data-role="page" data-theme="d" id="category_1" class="has_footer">
+		<div data-role="page" data-theme="d" id="category_2" class="has_footer">
+
+			<div data-role="header" data-theme="a" class="category_header">Sandwiches</div>
+
 
 			<div data-role="content">
 
 				<!-- Start Item List -->
 				<ul data-role="listview" data-theme="d" class="item-list ui-icon-alt">
-					<li data-role="list-divider" data-theme="c">
-						<strong>Sandwiches:</strong><br/>
-						<em style="font-size:11px;">Select an item below for details.</em>
-					</li>
 					<li>
 						<a href="item_4.html" data-transition="slide">
 							<img src="assets/img/items/4.png" />
@@ -77,23 +76,16 @@
 			</div> <!-- End Content Div -->
 
 
-
-			<!-- This script keeps the footer toolbar totals up to date -->
-			<script type="text/javascript" src="assets/js/update_footer.js"></script>
-
 			<!-- start footer -->
 			<div data-role="footer" data-position="fixed" data-id="footer-nav" data-theme="d" class="footer-bar">
 
-				<div class="ui-grid-b">
-					<div class="ui-block-a ui-icon-alt">
-						<a data-transition="slide" data-icon="arrow-l" data-direction="reverse" data-role="button" href="index.html" data-min="true" data-inline="true">Menu</a>
+				<div class="ui-grid-a">
+					<div class="ui-block-a">
+						<a data-transition="slide" data-direction="reverse" data-role="button" href="index.html" data-min="true" data-inline="true" data-theme="g">Menu</a>
 					</div>
 					<div class="ui-block-b">
-						<p>Cart<br/>
-						 (<span class="grand_total">empty</span>)<p>
-					</div>
-					<div class="ui-block-c">
-						<a data-theme="b" data-role="button" href="#cart" data-iconpos="right" data-icon="arrow-r" data-min="true" data-inline="true" data-transition="slide">My Order</a>
+						<a data-theme="f" data-role="button" href="#cart" class="cart_button" data-iconpos="right" data-icon="arrow-r" data-min="true" data-inline="true" data-transition="slide">My Order  (<span class="grand_total">$0</span>)</a>
+						<span class="cart_count_bubble">0</span>
 					</div>
 				</div><!-- /grid-b -->
 				

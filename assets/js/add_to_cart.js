@@ -77,25 +77,27 @@ $('.item-form').on('submit', function(e){
 
 
     CART_COUNT += 1;
-    var new_line_item = '<li data-theme="d" class="cart_purchase_item item-'+values['item_id']+'">';
-    new_line_item += '<input type="hidden" name="item['+CART_COUNT+'][item_id]" value="'+values['item_id']+'" />';
-    new_line_item += '<input type="hidden" name="item['+CART_COUNT+'][item_name]" value="'+values['item_name']+'" />';
-    new_line_item += '<input type="hidden" name="item['+CART_COUNT+'][modifiers]" value="'+option_text+'" />';
-    new_line_item += '<input id="'+CART_COUNT+'_quantity" type="hidden" name="item['+CART_COUNT+'][item_quantity]" value="'+values['item_quantity']+'" />';
-    new_line_item += '<input id="'+CART_COUNT+'_price" type="hidden" name="item['+CART_COUNT+'][item_price]" value="'+item_total+'" />';
-    new_line_item += '<input id="'+CART_COUNT+'_taxrate" type="hidden" name="item['+CART_COUNT+'][item_tax_rate]" value="'+values['item_tax_rate']+'" />';
-    new_line_item += '<h4>'+values['item_name']+'</h4><span class="ui-li-count">$'+line_total.toFixed(2)+'</span>';
-    if(values['item_quantity'] > 1){ 
-    	new_line_item += '<p class="quan_text" >Qty '+values['item_quantity']+' | @$'+values['item_price']+'</p>';
-	}
+    CART_ITEM_COUNT += parseFloat(values['item_quantity']);
+    var new_line_item = '<li data-theme="d" class="cart_purchase_item item-'+values['item_id']+'" id="line_'+CART_COUNT+'">';
+    new_line_item += '<input class="cart_item_id" type="hidden" name="item['+CART_COUNT+'][item_id]" value="'+values['item_id']+'" />';
+    new_line_item += '<input class="cart_item_name" type="hidden" name="item['+CART_COUNT+'][item_name]" value="'+values['item_name']+'" />';
+    new_line_item += '<input class="cart_item_mod" type="hidden" name="item['+CART_COUNT+'][modifiers]" value="'+option_text+'" />';
+    new_line_item += '<input class="cart_item_quantity" type="hidden" name="item['+CART_COUNT+'][item_quantity]" value="'+values['item_quantity']+'" />';
+    new_line_item += '<input class="cart_item_price" type="hidden" name="item['+CART_COUNT+'][item_price]" value="'+item_total+'" />';
+    new_line_item += '<input class="cart_item_taxrate" type="hidden" name="item['+CART_COUNT+'][item_tax_rate]" value="'+values['item_tax_rate']+'" />';
+    new_line_item += '<h4>'+values['item_name']+'</h4>';
 	if(mod_descrip.length > 0){ 
     	new_line_item += '<p class="mod_text" >'+option_text+'</p>';
 	}
+    new_line_item += '<p class="line_price">$'+line_total.toFixed(2)+'</p>';
+    new_line_item += '<p class="quan_text" >Qty <span>'+values['item_quantity']+'</span>';
+
 	new_line_item += '</li>';
 	//alert(new_line_item);
 	$('#confirm_subtotals').before(new_line_item);
 	$.mobile.changePage($("#cart"), "slide");
 	$('#cart-list').listview('refresh');
+    $('.no-empty').show();
 	update_total();
 	return false;
 
@@ -118,39 +120,6 @@ $('.quan_down').click(function(){
 		$('#item_'+item_id+'_count .ui-btn-text').text(0);
 	}
 });
-
-
-function update_total(){  //this function updates all the totals.
-
-	var sub_total = 0;
-	var tax_total = 0;
-	var item_spot = 1;
-
-	 if(CART_COUNT > 0){
-	 	while(item_spot <= CART_COUNT){
-	 		var this_price = parseFloat($('#'+item_spot+'_price').val());
-	 		var this_quan = parseFloat($('#'+item_spot+'_quantity').val());
-	 		var this_tax = parseFloat($('#'+item_spot+'_taxrate').val());
-
-	 		sub_total += this_price*this_quan;
-	 		tax_total += this_price*this_quan*(this_tax/100) 
-	 		item_spot +=1;
-	 	}
-	 }
-	 var grand_total = sub_total+tax_total
-	 grand_total = grand_total.toFixed(2);
-	 sub_total = sub_total.toFixed(2);
-	 tax_total = tax_total.toFixed(2);
-
-	 //now we can update the pages
-	 $('.sub_total').text('$'+sub_total);
-	 $('.tax_total').text('$'+tax_total);
-	 $('.grand_total').text('$'+grand_total);
-
-	 //update the global variables
-	 CART_TOTAL = grand_total;
-}
-
 
 
 

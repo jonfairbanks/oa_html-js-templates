@@ -26,7 +26,7 @@
 	<body>
 		
 		<!-- Start Main Landing Page -->
-		<div data-role="page" data-theme="b" id="item_1">
+		<div data-role="page" data-theme="b" id="item_6">
 
 
 
@@ -44,8 +44,7 @@
 					<!-- End hidden form item variables -->
 
 					<!-- Start Business Location Information Block -->
-					<ul data-role="listview" data-theme="d" data-inset="true"  class="item-info">
-						<li data-role="list-divider" data-theme="c">Item Details:</li>
+					<ul data-role="listview" data-theme="d" data-inset="true"  class="item-info island">
 						<li>
 							<img src="assets/img/items/6.png">
 							<h2>Tuna Sandwich <span>$3.00</span></h2>
@@ -64,7 +63,6 @@
 
 					<div>
 						<button data-role="none" class="PwPP PPBlue" data-transition="slide" type="submit"><b>Add to Order</b></button>
-						<a class="ui-icon-alt" data-icon="arrow-l" data-role="button" data-rel="back" data-theme="c" href="category_1.html" data-mini="true">Back to Appetizers</a>
 					</div>
 
 				</form> <!-- End Item Form -->
@@ -73,6 +71,21 @@
 
 			<!-- This Javascript handles converting the item form into the cart inputs -->
 			<script type="text/javascript" src="assets/js/add_to_cart.js"></script>
+
+			<!-- start footer -->
+			<div data-role="footer" data-position="fixed" data-id="footer-nav" data-theme="d" class="footer-bar">
+
+				<div class="ui-grid-a">
+					<div class="ui-block-a">
+						<a data-transition="slide" data-direction="reverse" data-role="button" href="index.html" data-min="true" data-inline="true" data-theme="g">Menu</a>
+					</div>
+					<div class="ui-block-b">
+						<a data-theme="f" data-role="button" href="#cart" class="cart_button" data-iconpos="right" data-icon="arrow-r" data-min="true" data-inline="true" data-transition="slide">My Order  (<span class="grand_total">$0</span>)</a>
+						<span class="cart_count_bubble">0</span>
+					</div>
+				</div><!-- /grid-b -->
+				
+			</div><!-- end footer -->
 
 		</div>
 		<!-- End Main Landing Page -->

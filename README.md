@@ -19,7 +19,9 @@ The current version includes front end templates and sample javascript for:
 Live Hosted Version
 --------------
 Use the following link to test the most recent version online:
-http://73.201.0.4/oa
+
+-http://173.201.0.4/oa
+
 (Always start from the index page)
 
 Comments

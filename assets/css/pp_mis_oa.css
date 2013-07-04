@@ -68,6 +68,7 @@ a.cart_button{
 #merchant-banner{
   background-position:center center;
   padding:5px;
+  background-size:cover;
 }
 #cart ul, #pickup_list{
   margin-bottom: 20px;
@@ -295,7 +296,25 @@ div.category_header{
 
 
 
+/*Extra Icons Sets used not included in JQM*/
 
+.ui-icon-ppoa-cart {
+  background-image: url("../img/icons/icon-shopping-cart.png");
+  border-radius:0;
+  background-size: 16px 16px;
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+  .ui-icon-myapp-email {
+    background-size: 24px 24px;
+  }
+}
+
+
+
+
+
+/*Extra Jquery Mobile Swatches for green buttons and varios extra bars*/
 
 
 .ui-btn-up-f {

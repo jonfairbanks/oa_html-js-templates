@@ -16,14 +16,7 @@ The current version includes front end templates and sample javascript for:
   - Order Confirmation
   - Store Details
 
-Live Hosted Version
---------------
-Use the following link to test the most recent version online:
-
--http://173.201.0.4/oa
-
-(Always start from the index page)
 
 Comments
 --------------
-The HTML source has many comments to help get you started. If you have any questions you can contact: rymay@paypal.com
+The HTML source has more comments to help get you started.

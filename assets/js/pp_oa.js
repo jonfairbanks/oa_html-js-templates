@@ -1,6 +1,7 @@
 //Global Javascript that will be used across the cart experience.
 
-$(document).on('pageinit', '#pickup',  function(){
+$(document).on('pageinit', '#ordertype',  function(){
+	set_order_type();
 	set_pickup_time();
 	
 	$('#pickup_slider').change(function(){
@@ -12,6 +13,10 @@ $(document).on('pageinit', '#pickup',  function(){
 
 	$('#pickup_day, #pickup_time').change(function(){
 		set_pickup_time();
+	});
+	
+	$('#order_option').change(function(){
+		set_order_type();
 	});
 
 });
@@ -232,6 +237,21 @@ function edit_cart(){
 
 }
 
+function set_order_type(){
+	var order_option = $('#order_option').val();
+	if(order_option == "Delivery"){
+		$('.eatin_details').hide();
+		$('.delivery_details').show();
+		var order_text = $('#order_option').val();
+	}else{
+		$('.eatin_details').show();
+		$('.delivery_details').hide();
+		var order_text = $('#order_option').val();
+	}
+	$('.order_option').text(order_option);
+	$('#option_list').listview('refresh');
+}
+
 function set_pickup_time(){
 	var day = $('#pickup_day').val();
 	if(day == "Today"){
@@ -248,6 +268,7 @@ function set_pickup_time(){
 	$('#local_time_input').val(pickup_time);
 	$('#pickup_list').listview('refresh');
 }
+
  function payment_complete(){  //items to do after successful payment
 
  	$.mobile.loading( 'hide' );

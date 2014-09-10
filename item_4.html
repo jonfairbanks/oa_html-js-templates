@@ -6,7 +6,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 		
-		<title>Merchant Name | Order Ahead Menu | BLT Sandwich</title>
+		<title>Jane Street Cafe | BLT Sandwich</title>
 		
 		<link rel="stylesheet" href="assets/css/pp_mis_oa.css" />
 
@@ -19,6 +19,48 @@
 		<link rel="stylesheet" href="lib/jquery.mobile.structure-1.3.1.min.css" />
 		<script src="lib/jquery-1.9.1.min.js"></script>
 		<script src="lib/jquery.mobile-1.3.1.min.js"></script>
+		
+		<!-- PP Bridge JS section -->
+		<script src="assets/js/bridge/ppbridge.js"></script>
+		<script src="assets/js/bridge/generic-merchant-core.js"></script>
+		
+		<script type="text/javascript">
+			document.addEventListener("DOMContentLoaded", function(){
+				// Initialize the actions, handlers and callbacks
+				PayPalApp.init(merchantConfig); 
+				PayPalApp.call("MerchantTitleBar");
+			}, false);
+		</script>
+		
+		<!-- Below is the js for Analytics -->
+		<noscript><img src="https://t.paypal.com?nojs=1&pgrp=homepage&tmpl=home.html" alt="" height="1" width="1" border="0"></noscript>
+		<script src="assets/js/pa_thirdparty.js"></script>
+		<script type="text/javascript">
+		PAYPAL.analytics.setup();
+		$(document).ready(function() 
+		 {
+			var d = new Date();
+			
+			var pgrp = 'mobile:consapp:shop:OAppDemoPS',
+				page = 'mobile:consapp:shop:OAppDemoPS:addItem::',
+				ccpg = 'usa',
+				server = "//t.paypal.com/ts",
+				e = 'im',
+				ts = d.getTime(), 
+				g = d.getTimezoneOffset(), 
+				srce = 'eci:orderahead:ppDemoPS',
+				mlid = sessionStorage.getItem("locationId"),
+				cust = sessionStorage.getItem("customerId"),
+				poschk = sessionStorage.getItem("tabId"),
+				ptname = 'paypalDemoPS';
+				
+			$( "#addToOrder" ).click(function(e) {
+				var pgln = 'mobile:consapp:shop:OAppDemoPS:addItem::|addToCart',
+					pglk = 'mobile:consapp:shop:OAppDemoPS|addToCart';
+			});
+				
+		 });		
+		</script>
 	</head>
 
 
@@ -27,8 +69,6 @@
 		
 		<!-- Start Main Landing Page -->
 		<div data-role="page" data-theme="b" id="item_4" class="has_footer">
-
-
 
 			<div data-role="content">
 			
@@ -46,7 +86,6 @@
 					<!-- Start Business Location Information Block -->
 					<ul data-role="listview" data-theme="d" data-inset="true"  class="item-info island" style="margin-top:0;">
 						<li>
-							<img src="assets/img/items/4.png">
 							<h2>BLT Sandwich <span>$5.15</span></h2>
 							<p>This delicious sandwich is made fresh to order with your choice of bread.  Sandwich includes your choice of side.</p>
 						</li>
@@ -72,20 +111,20 @@
 							        <input data-theme="c" data-mini="true" type="radio" name="bread" id="radio-choice-2" value="whole wheat">
 							        <label for="radio-choice-2">Whole Wheat</label>
 							        <input data-theme="c" data-mini="true" type="radio" name="bread" id="radio-choice-3" value="bagle" mod-cost="0.50">
-							        <label for="radio-choice-3">Bagle<span class="mod-price">+ $0.50</span></label>
+							        <label for="radio-choice-3">Bagel<span class="mod-price">+ $0.50</span></label>
 							</fieldset>
 						</li>
 						<li data-role="fieldcontain">
 							<fieldset data-role="controlgroup">
 							    <legend>Choose a side</legend>
 							    <input data-theme="c" data-mini="true" type="radio" name="side" id="checkbox-1a" value="chips" checked="checked">
-							    <label for="checkbox-1a">Chips</label>
+							    <label for="checkbox-1a">Chips <span class="mod-price">+ $0.00</span></label>
 							    <input data-theme="c" data-mini="true" type="radio" name="side" id="checkbox-2a" value="fries">
-							    <label for="checkbox-2a">French Fries</label>
+							    <label for="checkbox-2a">French Fries <span class="mod-price">+ $0.00</span></label>
 							    <input data-theme="c" data-mini="true" type="radio" name="side" id="checkbox-3a" value="sweet potato fries" mod-cost="1.25">
-							    <label for="checkbox-3a">Sweet Potato Fries <span class="mod-price">+ $1.25</span></label>
+							    <label for="checkbox-3a">Sweet Potato Fries <span class="mod-price">+ $1.00</span></label>
 							    <input data-theme="c" data-mini="true" type="radio" name="side" id="checkbox-4a" value="soup" >
-							    <label for="checkbox-4a">Soup of the Day</label>
+							    <label for="checkbox-4a">Soup of the Day <span class="mod-price">+ $1.25</span></label>
 							</fieldset>
 						</li>
 					</ul>
@@ -97,25 +136,24 @@
 					<ul data-role="listview" data-theme="d" data-inset="true" class="ui-icon-alt island">
 						<li>
 							<fieldset data-role="controlgroup">
-						        <input data-theme="d" type="checkbox" name="toppings[]" id="checkbox-v-1a" value="bacon" data-mini="true" checked="checked" mod-default="true">
-						        <label for="checkbox-v-1a">Bacon</label>
 						        <input data-theme="d" type="checkbox" name="toppings[]" id="checkbox-v-2a" value="lettuce" data-mini="true" checked="checked" mod-default="true">
-						        <label for="checkbox-v-2a">Lettuce</label>
+						        <label for="checkbox-v-2a">Lettuce <span class="mod-price">+ $0.00</span></label>
 						        <input data-theme="d" type="checkbox" name="toppings[]" id="checkbox-v-3a" value="tomato" data-mini="true" checked="checked" mod-default="true">
-						        <label for="checkbox-v-3a">Tomato</label>
+						        <label for="checkbox-v-3a">Tomato <span class="mod-price">+ $0.00</span></label>
 						        <input data-theme="d" type="checkbox" name="toppings[]" id="checkbox-v-4a" value="mayo" data-mini="true" checked="checked" mod-default="true">
-						        <label for="checkbox-v-4a">Mayo</label>
+						        <label for="checkbox-v-4a">Mayo <span class="mod-price">+ $0.00</span></label>
 						        <input data-theme="d" type="checkbox" name="toppings[]" id="checkbox-v-5a" value="salt and pepper" data-mini="true" >
-						        <label for="checkbox-v-5a">Salt and Pepper</label>
+						        <label for="checkbox-v-5a">Salt and Pepper <span class="mod-price">+ $0.00</span></label>
 						        <input data-theme="d" type="checkbox" name="toppings[]" id="checkbox-v-6a" value="avocado" data-mini="true" mod-cost="1.00">
 						        <label for="checkbox-v-6a">Avocado <span class="mod-price">+ $1.00</span></label>
+						        <input data-theme="d" type="checkbox" name="toppings[]" id="checkbox-v-1a" value="bacon" data-mini="true" mod-default="true">
+						        <label for="checkbox-v-1a">Bacon <span class="mod-price">+ $1.00</span></label>
 							</fieldset>	
 						</li>
 					</ul>
 					<!-- End Item Modifiers-->
-
 					<div>
-						<button data-role="none" class="PwPP PPBlue" data-transition="slide" type="submit"><b>Add to Order</b></button>
+						<button data-role="none" class="PwPP PPBlue" data-transition="slide" type="submit" id="addToOrder"><b>Add to Order</b></button>
 					</div>
 
 				</form> <!-- End Item Form -->
@@ -126,7 +164,7 @@
 			<script type="text/javascript" src="assets/js/add_to_cart.js"></script>
 
 			<!-- start footer -->
-			<div data-role="footer" data-position="fixed" data-id="footer-nav" data-theme="d" class="footer-bar">
+			<div data-role="footer" data-position="fixed" data-id="footer-nav" data-theme="d" class="footer-bar" data-tap-toggle="false">
 
 				<div class="ui-grid-a">
 					<div class="ui-block-a">

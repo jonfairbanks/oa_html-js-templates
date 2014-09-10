@@ -23,13 +23,13 @@ $('.item-form').on('submit', function(e){
     				price_adjustment += parseFloat($(this).attr('mod-cost'));
     			}
     			
-    			if($(this).attr('name') == 'add_on[]'){  //lets make a sentance for the modifications
+    			if($(this).attr('name') == 'add_on[]'){  //lets make a sentence for the modifications
     				mod_descrip[num_modifiers] = 'add '+ $(this).val();
     				num_modifiers += 1;
-    			}else if ($(this).attr('name') == 'bread'){  //lets make a sentance for bread
+    			}else if ($(this).attr('name') == 'bread'){  //lets make a sentence for bread
     				mod_descrip[num_modifiers] = 'on '+ $(this).val();
     				num_modifiers += 1;
-    			}else if ($(this).attr('name') == 'side'){  //lets make a sentance for bread
+    			}else if ($(this).attr('name') == 'side'){  //lets make a sentence for bread
     				mod_descrip[num_modifiers] = 'with '+ $(this).val();
     				num_modifiers += 1;
     			}else if ($(this).attr('name') == 'toppings[]'){  //lets check the toppings
@@ -75,7 +75,6 @@ $('.item-form').on('submit', function(e){
     	});
     }
 
-
     CART_COUNT += 1;
     CART_ITEM_COUNT += parseFloat(values['item_quantity']);
     var new_line_item = '<li data-theme="d" class="cart_purchase_item item-'+values['item_id']+'" id="line_'+CART_COUNT+'">';
@@ -114,7 +113,7 @@ $('.quan_down').click(function(){
 	var current_quantity = parseInt($('#item_'+item_id+'_quantity').val());
 	if(current_quantity > 0){ 
 		$('#item_'+item_id+'_quantity').val(current_quantity - 1);
-		$('#item_'+item_id+'_count .ui-btn-text').text(current_quantity + 1);
+		$('#item_'+item_id+'_count .ui-btn-text').text(current_quantity - 1);
 	}else{
 		$('#item_'+item_id+'_quantity').val(0);
 		$('#item_'+item_id+'_count .ui-btn-text').text(0);

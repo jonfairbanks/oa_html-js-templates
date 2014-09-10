@@ -10,6 +10,7 @@
 }
 #business-info .ui-btn-inner, #business-info li{
   border:none;
+  text-align:right;
 }
 #my-order-header{
   padding:2px 2px 2px 15px
@@ -66,9 +67,11 @@ a.cart_button{
 
 }
 #merchant-banner{
-  background-position:center center;
-  padding:5px;
-  background-size:cover;
+  background-position:left center;
+  padding:0px;
+  background-size:100% 100%;
+  background-repeat:no-repeat; 
+  width:50%;
 }
 #cart ul, #pickup_list{
   margin-bottom: 20px;
@@ -117,7 +120,7 @@ ul.item-info .ui-li-thumb{
   left:5px;
 }
 ul.island{
-  border-radius:6px;
+   border-radius:6px; 
 }
 div.category_header{
   padding: 10px;
@@ -203,6 +206,18 @@ div.category_header{
   background-size:14px;
   line-height: 16px;
 }
+
+.container {
+	display: table;
+	width: 100%;
+	max-width: 100%;
+}
+.column {
+	display: table-cell;
+	vertical-align: middle;
+	width: 50%;
+}
+
 
 /*CSS Below For Custom PayPal Pay Buttons*/
 

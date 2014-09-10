@@ -6,7 +6,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 		
-		<title>Merchant Name | Order Ahead Menu | Tuna Sandwich</title>
+		<title>Jane Street Cafe | Tuna Sandwich</title>
 		
 		<link rel="stylesheet" href="assets/css/pp_mis_oa.css" />
 
@@ -19,6 +19,48 @@
 		<link rel="stylesheet" href="lib/jquery.mobile.structure-1.3.1.min.css" />
 		<script src="lib/jquery-1.9.1.min.js"></script>
 		<script src="lib/jquery.mobile-1.3.1.min.js"></script>
+		
+		<!-- PP Bridge JS section -->
+		<script src="assets/js/bridge/ppbridge.js"></script>
+		<script src="assets/js/bridge/generic-merchant-core.js"></script>
+		
+		<script type="text/javascript">
+			document.addEventListener("DOMContentLoaded", function(){
+				// Initialize the actions, handlers and callbacks
+				PayPalApp.init(merchantConfig); 
+				PayPalApp.call("MerchantTitleBar");
+			}, false);
+		</script>
+		
+		<!-- Below is the js for Analytics -->
+		<noscript><img src="https://t.paypal.com?nojs=1&pgrp=homepage&tmpl=home.html" alt="" height="1" width="1" border="0"></noscript>
+		<script src="assets/js/pa_thirdparty.js"></script>
+		<script type="text/javascript">
+		PAYPAL.analytics.setup();
+		$(document).ready(function() 
+		 {
+			var d = new Date();
+			
+			var pgrp = 'mobile:consapp:shop:OAppDemoPS',
+				page = 'mobile:consapp:shop:OAppDemoPS:addItem::',
+				ccpg = 'usa',
+				server = "//t.paypal.com/ts",
+				e = 'im',
+				ts = d.getTime(), 
+				g = d.getTimezoneOffset(), 
+				srce = 'eci:orderahead:ppDemoPS',
+				mlid = sessionStorage.getItem("locationId"),
+				cust = sessionStorage.getItem("customerId"),
+				poschk = sessionStorage.getItem("tabId"),
+				ptname = 'paypalDemoPS';
+				
+			$( "#addToOrder" ).click(function(e) {
+				var pgln = 'mobile:consapp:shop:OAppDemoPS:addItem::|addToCart',
+					pglk = 'mobile:consapp:shop:OAppDemoPS|addToCart';
+			});
+				
+		 });		
+		</script>
 	</head>
 
 
@@ -27,8 +69,6 @@
 		
 		<!-- Start Main Landing Page -->
 		<div data-role="page" data-theme="b" id="item_6" class="has_footer">
-
-
 
 			<div data-role="content">
 			
@@ -46,7 +86,6 @@
 					<!-- Start Business Location Information Block -->
 					<ul data-role="listview" data-theme="d" data-inset="true"  class="item-info island" style="margin-top:0;">
 						<li>
-							<img src="assets/img/items/6.png">
 							<h2>Tuna Sandwich <span>$3.00</span></h2>
 							<p>This is just a simple sandwich.  It does not come with anything else.</p>
 						</li>
@@ -60,9 +99,8 @@
 						</li>
 					</ul>
 					<!-- End Business Location Information Block -->
-
 					<div>
-						<button data-role="none" class="PwPP PPBlue" data-transition="slide" type="submit"><b>Add to Order</b></button>
+						<button data-role="none" class="PwPP PPBlue" data-transition="slide" type="submit" id="addToOrder"><b>Add to Order</b></button>
 					</div>
 
 				</form> <!-- End Item Form -->
@@ -73,7 +111,7 @@
 			<script type="text/javascript" src="assets/js/add_to_cart.js"></script>
 
 			<!-- start footer -->
-			<div data-role="footer" data-position="fixed" data-id="footer-nav" data-theme="d" class="footer-bar">
+			<div data-role="footer" data-position="fixed" data-id="footer-nav" data-theme="d" class="footer-bar" data-tap-toggle="false">
 
 				<div class="ui-grid-a">
 					<div class="ui-block-a">

@@ -6,8 +6,8 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 		
-		<title>Merchant Name</title>
-
+		<title>Jane Street Cafe</title>
+		
 		<!-- Standard jQquery Mobile themes can be created and replaced, to apply universal styling -->
 		<!-- Go to: http://jquerymobile.com/themeroller/index.php to build one, and download it to the themes directory. -->
 		<link rel="stylesheet" href="themes/jqm-paypal/theme.min.css" />
@@ -20,6 +20,145 @@
 		<!-- The below js, and css are used for the Order-Ahead Template functionality and styles beyond that of JQM framework -->
 		<link rel="stylesheet" href="assets/css/pp_mis_oa.css" />
 		<script src="assets/js/pp_oa.js"></script>
+
+		<!-- PP Bridge JS section -->
+		<script src="assets/js/bridge/ppbridge.js"></script>
+		<script src="assets/js/bridge/generic-merchant-core.js"></script>
+		
+		<script type="text/javascript">
+			document.addEventListener("DOMContentLoaded", function(){
+				// Initialize the actions, handlers and callbacks
+				PayPalApp.init(merchantConfig); 
+				PayPalApp.call("MerchantTitleBarDisabledBack");
+			}, false);
+		</script>
+		
+		<!-- Below is the js for Analytics -->
+		<noscript><img src="https://t.paypal.com?nojs=1&pgrp=homepage&tmpl=home.html" alt="" height="1" width="1" border="0"></noscript>
+		<script src="assets/js/pa_thirdparty.js"></script>
+		<script type="text/javascript">
+		PAYPAL.analytics.setup();
+		$(document).ready(function() 
+		 {
+			sessionStorage.setItem("locationId", getQueryVariable("locationId"));
+			sessionStorage.setItem("customerId", getQueryVariable("customerId"));
+			sessionStorage.setItem("tabId", getQueryVariable("tabId"));
+		 
+			$.getJSON("http://jsonip.com?callback=?", function (data) {
+					sessionStorage.setItem("ip", data.ip);
+			});
+
+			browserNameVersion= (function(){
+				var ua= navigator.userAgent, tem, 
+				M= ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+				if(/trident/i.test(M[1])){
+					tem=  /\brv[ :]+(\d+)/g.exec(ua) || [];
+					return 'IE '+(tem[1] || '');
+				}
+				if(M[1]=== 'Chrome'){
+					tem= ua.match(/\bOPR\/(\d+)/)
+					if(tem!= null) return 'Opera '+tem[1];
+				}
+
+				return [M[1],M[2]]; //.join(' ');
+			})();
+
+			var d = new Date();
+			
+			var pgrp = 'mobile:consapp:shop:OAppDemoPS',
+				page = 'mobile:consapp:shop:OAppDemoPS:menu::',
+				ccpg="usa";
+				server = "//t.paypal.com/ts";
+				e = 'im',
+				ts = d.getTime(), 
+				g = d.getTimezoneOffset(), 
+				srce = 'eci:orderahead:ppDemoPS',
+				mlid = sessionStorage.getItem("locationId"),
+				cust = sessionStorage.getItem("customerId"),
+				poschk = sessionStorage.getItem("tabId"),
+				ptname = 'paypalDemoPS',
+				ua = navigator.userAgent,
+				btype = browserNameVersion[0],
+				bver = browserNameVersion[1],
+				os = navigator.platform,
+				ip = sessionStorage.getItem("ip");
+
+			// alert(mlid+","+cust+","+poschk+","+btype+","+bver);
+
+			$( "#recentOrders" ).click(function(e) {
+				var pgln = 'mobile:consapp:shop:OAppDemoPS:menu::|recentOrders',
+					pglk = 'mobile:consapp:shop:OAppDemoPS|recentOrders';
+			});
+			$( "#myOrder" ).click(function() {
+				var pgln = 'mobile:consapp:shop:OAppDemoPS:menu::|viewCart',
+					pglk = 'mobile:consapp:shop:OAppDemoPS|viewCart';
+			});	
+			$( "#process-payment-button" ).click(function() {
+				pgln = 'mobile:consapp:shop:OAppDemoPS:payment::|sendPayment',
+				pglk = 'mobile:consapp:shop:OAppDemoPS|sendPayment';
+			});
+			$( "#gratuity-0" ).click(function() {
+				pgln = 'mobile:consapp:shop:OAppDemoPS:payment::|addTip'+document.getElementById("gratuity-0").value,
+				pglk = 'mobile:consapp:shop:OAppDemoPS|addTip';
+			});
+			$( "#gratuity-10" ).click(function() {
+				pgln = 'mobile:consapp:shop:OAppDemoPS:payment::|addTip'+document.getElementById("gratuity-10").value,
+				pglk = 'mobile:consapp:shop:OAppDemoPS|addTip';
+			});
+			$( "#gratuity-15" ).click(function() {
+				pgln = 'mobile:consapp:shop:OAppDemoPS:payment::|addTip'+document.getElementById("gratuity-15").value,
+				pglk = 'mobile:consapp:shop:OAppDemoPS|addTip';
+			});
+			$( "#gratuity-18" ).click(function() {
+				pgln = 'mobile:consapp:shop:OAppDemoPS:payment::|addTip'+document.getElementById("gratuity-18").value,
+				pglk = 'mobile:consapp:shop:OAppDemoPS|addTip';
+			});
+			$( "#gratuity-other" ).click(function() {
+				pgln = 'mobile:consapp:shop:OAppDemoPS:payment::|addTip'+document.getElementById("gratuity-other").value,
+				pglk = 'mobile:consapp:shop:OAppDemoPS|addTip';
+			});
+			$( "#set_order_type" ).click(function() {
+				pgln = 'mobile:consapp:shop:OAppDemoPS:cart::|checkout',
+				pglk = 'mobile:consapp:shop:OAppDemoPS|checkout';
+			});			
+			$('#order_option').change(function(){
+				var order_option = $('#order_option').val();
+				if(order_option == "Take Out"){
+					pgln = 'mobile:consapp:shop:OAppDemoPS:cart::|pickup',
+					pglk = 'mobile:consapp:shop:OAppDemoPS|pickup';
+				}else if(order_option == "Delivery"){
+					pgln = 'mobile:consapp:shop:OAppDemoPS:cart::|delivery',
+					pglk = 'mobile:consapp:shop:OAppDemoPS|delivery';
+				}
+			});
+
+		 });
+
+		function getQueryVariable(variable)
+		{
+		   var query = window.location.search.substring(1);
+		   var vars = query.split("&");
+		   for (var i=0;i<vars.length;i++) {
+				   var pair = vars[i].split("=");
+				   if(pair[0] == variable){return pair[1];}
+		   }
+		   return(false);
+		}
+		
+		function cart_load_js()
+		{
+			var pgrp = 'mobile:consapp:shop:OAppDemoPS',
+				page = 'mobile:consapp:shop:OAppDemoPS:cart::';
+		}
+		
+		function pmt_page_js()
+		{
+			var pgrp = 'mobile:consapp:shop:OAppDemoPS',
+				page = 'mobile:consapp:shop:OAppDemoPS:payment::';
+		}		
+		alert(page);	
+		
+		</script>
 		
 		<!-- Declaring some global variables here for use in the cart and PP Order Ahaed JS. -->
 		<script type="text/javascript">
@@ -27,107 +166,360 @@
 		var CART_ITEM_COUNT = 0; //How many total items are in the cart (cart count bubble)
  		var CART_TOTAL = 0; //total amount with tax that is due at checkout
 		</script>
+		
+		<!-- JS to change hours based on meal type selection -->
+		<script type="text/javascript">
+		function check_meal() {
+		
+			var d = new Date();
+			var day = d.getDay();
+			var hour = d.getHours();
+			
+			if(hour < 9 || hour >= 22 || day == 0) {
+				document.getElementById('preorder').style.display = 'inline-block';
+			} else {
+				document.getElementById('preorder').style.display = 'none';
+			}
+		
+    		if(document.getElementById('meal').value == "breakfast") {
+        		document.getElementById('breakfast').style.display = 'block'; 
+        		document.getElementById('lunch').style.display = 'none'; 
+        		document.getElementById('dinner').style.display = 'none';
+        		document.getElementById('appetizers').style.display = 'none';
+        		document.getElementById('appetizer_hdr').style.display = 'none';
+        		document.getElementById('breakfast_items').style.display = 'block';
+        		document.getElementById('breakfast_hdr').style.display = 'block'; 
+        		document.getElementById('sandwiches').style.display = 'none';
+        		document.getElementById('sandwich_hdr').style.display = 'none';
+        		document.getElementById('desserts').style.display = 'none';
+        		document.getElementById('dessert_hdr').style.display = 'none';
+        		document.getElementById('beverages').style.display = 'block';
+        		document.getElementById('beverage_hdr').style.display = 'block'; 
+    		}
+    		if(document.getElementById('meal').value == "lunch") {
+        		document.getElementById('breakfast').style.display = 'none'; 
+        		document.getElementById('lunch').style.display = 'block';
+        		document.getElementById('dinner').style.display = 'none';
+        		document.getElementById('appetizers').style.display = 'block';
+        		document.getElementById('appetizer_hdr').style.display = 'block';
+        		document.getElementById('breakfast_items').style.display = 'none';
+        		document.getElementById('breakfast_hdr').style.display = 'none';
+        		document.getElementById('sandwiches').style.display = 'block';
+        		document.getElementById('sandwich_hdr').style.display = 'block';
+        		document.getElementById('desserts').style.display = 'block';
+        		document.getElementById('dessert_hdr').style.display = 'block';
+        		document.getElementById('beverages').style.display = 'block';
+        		document.getElementById('beverage_hdr').style.display = 'block'; 
+    		}
+    		if(document.getElementById('meal').value == "dinner") {
+        		document.getElementById('breakfast').style.display = 'none';
+        		document.getElementById('lunch').style.display = 'none';
+        		document.getElementById('dinner').style.display = 'block';
+        		document.getElementById('appetizers').style.display = 'block';
+        		document.getElementById('appetizer_hdr').style.display = 'block';
+        		document.getElementById('breakfast_items').style.display = 'none';
+        		document.getElementById('breakfast_hdr').style.display = 'none';
+        		document.getElementById('sandwiches').style.display = 'block';
+        		document.getElementById('sandwich_hdr').style.display = 'block';
+        		document.getElementById('desserts').style.display = 'block';
+        		document.getElementById('dessert_hdr').style.display = 'block';
+        		document.getElementById('beverages').style.display = 'block';
+        		document.getElementById('beverage_hdr').style.display = 'block';
+    		} 
+		}
+		
+		</script>
 
 	</head>
 
 
 
-	<body>
+	<body  onload="check_meal();">
 		
 		<!-- Start Main Landing Page -->
 		<div data-role="page" data-theme="b" id="home" class="has_footer">
 
-			
+		  
 			<!-- Start Headeder Banner - This header banner should be styled with the merchants background and logo, alternatively it can be removed if desired -->
-			<div data-role="header" style="background-image:url('assets/img/merchant/header_bg.png');" id="merchant-banner">
-					<p style="text-align:center">
-						<a href="store_details.html" data-transition="slide">
-							<img class="merchant-logo-square" src="assets/img/merchant/logo_square.jpg" width="60" height="60" />
-						</a>
+		<div class="container">
+			<div class="column" data-role="header" style="background-image:url('assets/img/merchant/header_bg.png');" id="merchant-banner">
+					<p style="text-align:center;">
+							<img class="merchant-logo-square" src="assets/img/merchant/logo_square.jpg"/>
 					</p>
-			</div> <!-- End Header Banner -->
+			</div> <!-- End Header Banner   -->
 
-
-
-			<div data-role="content">
-			
-				<!-- Start Business Location Information Block -->
-				<ul data-role="listview" data-theme="a" id="business-info">
+			<div class="column">
+			<ul data-role="listview" data-theme="a" id="business-info">
 					<li>
 						<a href="store_details.html" data-transition="slide">
-							<h3>43 Jane Street, San Francisco CA </h3>
-							<p class="hour_text">Open 9am-10pm</p>
-							<p class="tel_text">415.555.4312</p>
+							<h3>
+							43 Jane Street<br>
+							San Francisco, CA
+							</h3>
+							<br>
+							<p>Open 8am-10pm Mon-Sat</p> <!-- class="hour_text" -->
+							<p>415-555-4312</p><br>  <!-- class="tel_text" -->
+							<p>Delivery Hours: 8am-9pm</p>
+							<p>Delivery Charge: $3.50</p>
+							<p>Min Bill for Delivery: $15.00</p>
 						</a>
 					</li>
 				</ul>
-				<!-- End Business Location Information Block -->
+			</div>
+		</div>
+		
+		<div class="container" id="preorder" style="background-color:orange;">
+				<p style="text-align:center;">PRE-ORDER ONLY.  Our store hours are 8am-10pm Mon-Sat</p>
+		</div>
 
-				<!-- Start Order Ahead Menu -->
-				<h2 class="outer_title">Order Ahead Menu</h2>
 
-				<ul data-role="listview" data-theme="d" data-inset="true" class="ui-icon-alt island">
-					<li>
-						<a href="category_1.html" data-transition="slide" data-prefetch>
-							<img src="assets/img/items/category_1.png" />
-							<h3>Appetizers</h3>
-							<p>Starters and salads</p>
-						</a>
-					</li>
-					<li>
-						<a href="category_2.html" data-transition="slide" data-prefetch>
-							<img src="assets/img/items/category_2.png" />
-							<h3>Sandwiches</h3>
-							<p>Made fresh daily.</p>
-						</a>
-					</li>
-					<li>
-						<a href="category_3.html" data-transition="slide" data-prefetch>
-							<img src="assets/img/items/category_3.png" />
-							<h3>Desserts</h3>
-							<p>Leave some room for a sweet treat.</p>
-						</a>
-					</li>
-					<li>
-						<a href="category_4.html" data-transition="slide" data-prefetch>
-							<img src="assets/img/items/category_4.png" />
-							<h3>Beverages</h3>
-							<p>Pop, Juice, Beer and Wine</p>
-						</a>
-					</li>
-				</ul>
-				<!-- End Order Ahead Menu -->
+		<div data-role="content">
+			<!-- Start Order Ahead Menu -->
+			<h2 class="outer_title">Order Ahead Menu</h2><br>
+			
 
+			<div class="container">
+				<div class="column">		
+					<select id="meal" style="font-size:1em;" onchange="check_meal();">
+						<option value="breakfast" selected>Breakfast</option>
+						<option value="lunch">Lunch</option>
+						<option value="dinner">Dinner</option>
+					</select>
+				</div>
+				<div class="column" style="text-align:center;" >
+					<div id="breakfast">
+						<p>Hours:</p>  
+						<p>8:00am - 11:00am</p>
+					</div>
+					<div id="lunch">
+						<p>Hours:</p>
+						<p>11:00am - 3:00pm</p>
+					</div>
+					<div id="dinner">
+						<p>Hours:</p>
+						<p>3:00pm - 10:00pm</p>
+					</div>
+				</div>
+			</div>
+		
+		</div>
+			
+<!-- new items display listed out -->
+
+			<div data-role="header" data-theme="c" class="category_header" id="breakfast_hdr">Breakfast</div>
+			<div data-role="content">
+
+				<!-- Start Item List -->
+				<!--  data-filter="true" data-filter-placeholder="Search Items..." -->
+				<ul data-role="listview" data-theme="d" class="item-list ui-icon-alt" id="breakfast_items">
+					<li>
+						<a href="item_1.html">
+							<h2>Scrambled Eggs <span>$3.00</span></h2>
+							<p>No Desc</p>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<h2>Omelet <span>$4.50</span></h2>
+							<p>No Desc</p>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<h2>French Toast<span>$4.50</span></h2>
+							<p>No Desc</p>
+						</a>
+					</li>
+				</ul><!-- End Item List  -->
+			</div>  <!-- End Content Div -->
+			
+			<div data-role="header" data-theme="c" class="category_header" id="beverage_hdr">Beverages</div>
+			<div data-role="content">
+
+				<!-- Start Item List -->
+				<ul data-role="listview" data-theme="d" class="item-list ui-icon-alt" id="beverages">
+					<!-- <li data-role="list-divider" data-theme="c">Juice</li> -->
+					<li>
+						<a href="#">
+							<h2>50 oz Apple Juice <span>$1.85</span></h2>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<h2>50 oz Orange Juice <span>$1.85</span></h2>
+						</a>
+					</li>
+					<!-- <li data-role="list-divider" data-theme="c">Soda Pop</li> -->
+
+					<li>
+						<a href="#">
+							<h2>355ml Coke <span>$1.25</span></h2>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<h2>355ml Sprite <span>$1.25</span></h2>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<h2>355ml Root Beer <span>$1.25</span></h2>
+						</a>
+					</li>
+					<!-- <li data-role="list-divider" data-theme="c">Alcoholic</li> -->
+					<li>
+						<a href="item_8.html" data-transition="slide">
+							<h2>Bottle Corona <span>$5.25</span></h2>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<h2>Glass of Wine<span>$4.25</span></h2>
+						</a>
+					</li>
+				</ul> <!-- End Item List -->
+			</div>  <!-- End Content Div -->
+
+
+			<div data-role="header" data-theme="c" class="category_header" id="appetizer_hdr">Appetizers</div>
+			<div data-role="content">
+
+				<!-- Start Item List -->
+				<ul data-role="listview" data-theme="d" class="item-list ui-icon-alt" id="appetizers">
+					<li>
+						<a href="item_1.html" data-transition="slide">
+							<h2>Garden Salad <span>$4.85</span></h2>
+							<p>Made with fresh lettuce and carrots</p>
+
+						</a>
+					</li>
+					<li>
+						<a href="item_2.html" data-transition="slide">
+							<h2>Cesar Salad <span>$5.95</span></h2>
+							<p>Has dressing and bacon bits</p>
+						</a>
+					</li>
+					<li>
+						<a href="item_3.html" data-transition="slide">
+							<h2>Bread Sticks <span>$2.95</span></h2>
+							<p>5 tasty bread sticks. Serves 3.</p>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<h2>Item without image <span>$1.95</span></h2>
+							<p>This item has no image but does have sub-text.</p>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<h2>Item without sub-text <span>$0.95</span></h2>
+						</a>
+					</li>
+				</ul><!-- End Item List  -->
+			</div> <!-- End Content Div -->
+			
+			<div data-role="header" data-theme="c" class="category_header" id="sandwich_hdr">Sandwiches</div>
+			<div data-role="content">
+
+				<!-- Start Item List -->
+				<ul data-role="listview" data-theme="d" class="item-list ui-icon-alt" id="sandwiches">
+					<li>
+						<a href="item_4.html" data-transition="slide">
+							<h2>BLT Sandwich<span>$5.10</span></h2>
+							<p>A classic sandwich with chips</p>
+
+						</a>
+					</li>
+					<li>
+						<a href="item_5.html" data-transition="slide">
+							<h2>Turkey Wrap <span>$5.10</span></h2>
+							<p>Grilled and served with carrots</p>
+						</a>
+					</li>
+					<li>
+						<a href="item_6.html" data-transition="slide">
+							<h2>Tuna Sandwich<span>$3.00</span></h2>
+							<p>Low in fat high in protein.</p>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<h2>Item without image <span>$1.95</span></h2>
+							<p>This item has no image but does have sub-text.</p>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<h2>Item without sub-text <span>$0.95</span></h2>
+						</a>
+					</li>
+				</ul><!-- End Item List  -->
+			</div> <!-- End Content Div -->
+			
+			<div data-role="header" data-theme="c" class="category_header" id="dessert_hdr">Desserts</div>
+			<div data-role="content">
+
+				<!-- Start Item List -->
+				<ul data-role="listview" data-theme="d" class="item-list ui-icon-alt" id="desserts">
+					<li>
+						<a href="item_7.html" data-transition="slide">
+							<h2>Chocolate Pie<span>$2.50</span></h2>
+							<p>Classic and delicious</p>
+
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<h2>Sample Item <span>$1.95</span></h2>
+							<p>This item has no image.</p>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<h2>Sample Item <span>$1.95</span></h2>
+							<p>This item has no image.</p>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<h2>Sample Item <span>$1.95</span></h2>
+							<p>This item has no image.</p>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<h2>Sample Item <span>$1.95</span></h2>
+							<p>This item has no image.</p>
+						</a>
+					</li>
+				</ul><!-- End Item List  -->
+				<br><br><br>
 			</div> <!-- End Content Div -->
 
+ <!-- end item display listed out -->
+		<!-- start footer -->
+		<div data-role="footer" data-position="fixed" data-id="footer-nav" data-theme="d" class="footer-bar" data-tap-toggle="false">
 
-			<!-- This script keeps the footer toolbar totals up to date -->
-			<script type="text/javascript" src="assets/js/update_footer.js"></script>
-
-
-			<!-- start footer -->
-			<div data-role="footer" data-position="fixed" data-id="footer-nav" data-theme="d" class="footer-bar">
-
-				<div class="ui-grid-a">
-					<div class="ui-block-a">
-						<a data-transition="slide" data-direction="reverse" data-role="button" href="#" data-min="true" data-inline="true" data-theme="g">Recent Orders</a>
-					</div>
-					<div class="ui-block-b">
-						<a data-theme="f" data-role="button" href="#cart" class="cart_button" data-iconpos="left" data-icon="ppoa-cart" data-min="true" data-inline="true" data-transition="slide">My Order  (<span class="grand_total">$0</span>)</a>
-						<span class="cart_count_bubble">0</span>
-					</div>
-				</div><!-- /grid-b -->
-				
-			</div><!-- end footer -->
-
+			<div class="ui-grid-a">
+				<div class="ui-block-a">
+					<a data-transition="slide" data-direction="reverse" data-role="button" href="recent_orders.html" data-min="true" data-inline="true" data-theme="g" id="recentOrders">Recent Orders</a>
+				</div>
+				<div class="ui-block-b">
+					<a data-theme="f" data-role="button" href="#cart" class="cart_button" data-iconpos="left" data-icon="ppoa-cart" data-min="true" data-inline="true" data-transition="slide" id="myOrder">My Order</a>
+				</div>
+			</div><!-- /grid-b -->
+			
+		</div>
+		<!-- end footer -->
 		</div>
 		<!-- End Main Landing Page -->
 
 
 
 		<!-- Start Cart Page -->
-		<div data-role="page" data-theme="b" id="cart" class="ui-icon-alt has_footer">
-					
+		<div data-role="page" data-theme="b" id="cart" class="ui-icon-alt has_footer" onfocus="cart_load_js();">
+	
 
 
 			<div data-role="content" data-theme="c" >
@@ -184,14 +576,14 @@
 					</li>
 				</ul>
 				<div class="cart-move-on">
-					<a href="#pickup" data-role="none" class="PwPP PPBlue no-empty" data-transition="slide"><b>Next: Set Pickup Time</b></a>
+					<a href="#ordertype" data-role="none" class="PwPP PPBlue no-empty" data-transition="slide" id="set_order_type"><b>Next: Set Order Type</b></a>
 					<a data-role="button" data-transition="slide" data-direction="reverse" data-theme="h" href="#home">Add <span class="no-empty">More</span> Items</a>
 				</div>
 				
 			</div> <!-- End Content -->
 
 			<!-- start footer -->
-			<div data-role="footer" data-position="fixed" data-id="footer-nav" data-theme="d" class="footer-bar cart-move-on">
+			<div data-role="footer" data-position="fixed" data-id="footer-nav" data-theme="d" class="footer-bar cart-move-on" data-tap-toggle="false">
 
 				<div class="ui-grid-a">
 					<div class="ui-block-a">
@@ -203,17 +595,39 @@
 				
 			</div><!-- end footer -->
 
-		</div> <!-- End Cart Page -->
+		</div> 
+		<!-- End Cart Page -->
 
 
-
-		<!-- Start Pickup Page -->
-		<div data-role="page" data-theme="b" id="pickup">
+		<!-- Start Order Type Page -->
+		<div data-role="page" data-theme="b" id="ordertype">
 
 			<div data-role="content" data-theme="c" >
 
-				<ul data-role="listview" id="pickup_list" data-inset="true" style="margin-top:0px;" class="island no-lines">
-					<li data-theme="d" class="slim_header">Pickup Time <span class="pickup_time" style="float:right;color:#000">Today at 4:12pm</span></li>
+				<ul data-role="listview" id="option_list" data-inset="true" style="margin-top:0px;" class="island no-lines">
+					<li data-theme="d" class="slim_header">Order Type</li>
+					<li data-theme="d" class="ui-icon-alt">
+			            <select name="order_option" id="order_option" data-mini="true">
+			                <option value="Eat In">Eat In</option>
+			                <option value="Take Out">Take Out</option>
+			                <option value="Delivery">Delivery</option>
+			            </select>
+					</li>
+					<li data-theme="d" data-role="fieldcontain" class="ui-icon-alt delivery_details" style="display:none;">
+						<label for="Name">Name:&nbsp;</label><input type="text" name="Name" id="Name" data-mini="true">
+						<label for="Address">Address:&nbsp;</label><input type="text" name="Address" id="Address" data-mini="true">
+						<label for="CityState">City/State:&nbsp;</label><input type="text" name="CityState" id="CityState" data-mini="true">
+						<label for="Zip">Zip:&nbsp;</label><input type="text" name="Zip" id="Zip" data-mini="true">
+						<label for="Phone">Phone #:&nbsp;</label><input type="tel" name="Phone" id="Phone" data-mini="true">
+					</li>
+					<li data-theme="d" data-role="fieldcontain" class="eatin_details">
+						<label for="Name">Name:&nbsp;</label><input type="text" name="Name" id="Name" data-mini="true">
+						<label for="Phone">Phone #:&nbsp;</label><input type="tel" name="Phone" id="Phone" data-mini="true">
+					</li>
+			     </ul>
+
+			     <ul data-role="listview" id="pickup_list" data-inset="true" style="margin-top:0px;" class="island no-lines">
+					<li data-theme="d" class="slim_header">Order Time <span class="order_text" style="float:right;color:#000"></span></li>
 					<li data-theme="d" class="ui-icon-alt">
 			            <select name="pickup_day" id="pickup_day" data-mini="true">
 			                <!-- Loop Through the next available week using your programming language -->
@@ -251,27 +665,26 @@
 					</li>
 			     </ul>
 			     <div>
-					<a href="#confirm" data-role="none" class="PwPP PPBlue" data-transition="slide"><b>Next: Confirm Order</b></a>
+					<a href="#confirm" data-role="none" class="PwPP PPBlue" data-transition="slide" id="confirm_order"><b>Next: Confirm Order</b></a>
 					<a data-role="button" data-rel="back" data-theme="h" href="#cart">Change Order</a>
 				</div>
 				
 			</div> <!-- End Content -->
 
-		</div> <!-- End Pickup Page -->
+		</div> 
+		<!-- End Order Type Page -->
 
 
 		<!-- Start Confirm Page -->
-		<div data-role="page" data-theme="b" id="confirm">
+		<div data-role="page" data-theme="b" id="confirm" onfocus="pmt_page_js();">
 
 			<div data-role="content" data-theme="c" >
 
 				<ul data-role="listview" id="confirm_list" data-inset="true" style="margin-top:0px;" class="island" data-count-theme="f">
 					<li data-theme="d" class="slim_header">Confirm Order</li>
-					<li data-theme="d"><p style="margin-bottom:0;">Pickup Time <span class="pickup_time">0:00</span></p></li>
 					<li data-theme="d">
-						<p>Subtotal <span class="sub_total">$0</span></p>
-						<p>Estimated Tax <span class="tax_total">$0</span></p>
-						<p style="margin-bottom:0;">Tip <span class="tip_total">$0</span></p>
+						<p>Order Type <span class="order_option">Delivery</span></p>
+						<p style="margin-bottom:0;">Order Time <span class="pickup_time">0:00</span></p>
 					</li>
 					<li data-theme="d">
 						<fieldset data-role="controlgroup" data-type="horizontal" id="tip-set">
@@ -289,34 +702,44 @@
 					    </fieldset>
 					</li>
 					<li data-theme="d">
+						<label for="Discount">Discount Code:&nbsp;</label><input type="text" name="Discount" id="Discount" data-mini="true">
+					</li>
+					<li data-theme="d">
+						<p>Subtotal <span class="sub_total">$0</span></p>
+						<p>Estimated Tax <span class="tax_total">$0</span></p>
+						<p style="margin-bottom:0;">Tip <span class="tip_total">$0</span></p>
+					</li>
+					<li data-theme="d">
 						<h3>Total: <span class="grand_total">$0</span></h3>
 					</li>
 				</ul>
-
 			     <div>
 				     <a data-role="none" class="PwPP PPBlue" href="#done" data-transition="slide" id="process-payment-button">
-				        <b>Pay <span class="grand_total">$0</span> with <img src="assets/img/icons/PPWhite.png" align="absmiddle" width="84" height="22"/></b>
+				        <b>Pay <span class="grand_total">$0</span> with <img src="assets/img/icons/pp_logo_white.png" align="absmiddle" width="84" height="22"/></b>
 				     </a>
-					<a data-role="button" data-rel="back" data-theme="h" href="#pickup">Change Pickup Time</a>
+					<a data-role="button" data-rel="back" data-theme="h" href="#pickup">Change Order Type</a>
 				</div>
 
 				
 			</div> <!-- End Content -->
 
-		</div> <!-- End Confirm Page -->
+		</div> 
+		<!-- End Confirm Page -->
 
 
 		<!-- Start Done Page -->
 		<div data-role="page" data-theme="b" id="done">
 
-			<div data-role="content" data-theme="c" >
-
-				<ul data-role="listview" id="done_list" data-inset="true" style="margin-top:0px;" class="island" >
+			<div data-role="content" data-theme="c">
+				<img src="assets/img/icons/thank_you.png" alt="Thank You">
+				<br>
+				<br>
+				<ul data-role="listview" id="done_list" data-inset="true" style="margin-top:0px;" class="island">
 					<li data-theme="d" class="slim_header">Order Complete</li>
 					<li data-theme="d">
-						<p class="grey">Pickup Time: <span class="pickup_time">0:00</span></p>
+						<p class="grey">Approx. Order Time: <span class="pickup_time">0:00</span></p>
 						<p class="grey">Total: <span><span>$6.34</span> Paid with PayPal</span></p>
-						<p>Look for the Prepaid Orders sign and skip the line!<p>
+						<p>PayPal - the faster, safer way to send money in-store!<p>
 					</li>
 				</ul>
 				
@@ -325,13 +748,14 @@
 						<a href="store_details.html">
 							<h2 style="margin-top:0;font-size:14px;text-transform:uppercase;">Store Location</h2>
 							<img src="http://maps.googleapis.com/maps/api/staticmap?center=37.788556,-122.396031&zoom=14&size=150x150&maptype=roadmap&markers=color:red%7C37.788556,-122.396031&sensor=false" />
-							<p>43 Jane Street, San Francisco CA</p>
-							<p class="hour_text">Open 9am-10pm</p>
+							<p>43 Jane Street</p>
+							<p>San Francisco, CA</p>
+							<p class="hour_text">Open 8am-10pm</p>
 							
 						</a>
 					</li>
 					<li data-theme="d">
-						<a href="tel:+16479756188">
+						<a href="tel:4155554312">
 							<h2 style="font-size:15px;font-weight:500;">
 								<img height="15" src="assets/img/icons/phone.png" /> &nbsp;&nbsp; 415-555-4312
 							</h2>
@@ -340,14 +764,22 @@
 				</ul>
 
 			     <div>
-					<a data-role="button"  data-theme="a" href="index.html" data-ajax="false">Create a New Order</a>
-					<a data-role="button"  data-theme="g" href="#" data-ajax="false">View Receipt</a>
+					<a data-role="button" data-theme="a" href="index.html" data-ajax="false">Create a New Order</a>
+					<br>
+					<br>
+					<a data-role="button" data-theme="f" href="#" data-ajax="false">Leave Feedback</a>
 				</div>
 
 				
 			</div> <!-- End Content -->
 
-		</div> <!-- End Confirm Page -->
+		</div> 
+		<!-- End Confirm Page -->
+
+		<!-- This script keeps the footer toolbar totals up to date -->
+		<script type="text/javascript" src="assets/js/update_footer.js"></script>
+				
+
 
 
 	</body>
